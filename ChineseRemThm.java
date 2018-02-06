@@ -60,7 +60,7 @@ class ChineseRemThm{
 		
 		crt.run(3,7,4,9);				//part a
 		crt.run(137, 423, 87, 191);		//part b
-		crt.run(133, 451, 237, 697);	//part c
+		crt.run(133, 451, 237, 697);	//part c The modulus is not coprime to previous ones
 		crt.run(5,9,6,10,7,11);			//part d
 		crt.run(37,43,22,49,18,71);		//part e
 	}
