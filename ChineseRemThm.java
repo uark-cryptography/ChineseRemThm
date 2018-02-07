@@ -2,6 +2,8 @@ import java.math.BigInteger;
 
 class ChineseRemThm{
 	
+	char problem ='A';
+	
 	void run(int a, int b, int c, int d){
 		int[] gcd = {a,b,c,d};
 		int[] cons = {a,c};
@@ -9,6 +11,7 @@ class ChineseRemThm{
 		
 		if(isCoprime(gcd))	
 			solve(cons, mods);	
+		problem++;
 	}
 	
 	void run(int a, int b, int c, int d, int e, int f){
@@ -19,7 +22,9 @@ class ChineseRemThm{
 		int[] mods = {b,d,f};	
 
 		if(isCoprime(gcd))	
-			solve(cons, mods);	
+			solve(cons, mods);
+
+		problem++;
 	}
 	
 	boolean isCoprime(int[] gcd){
@@ -28,12 +33,13 @@ class ChineseRemThm{
 		int b = 0;
 		for(int i = 1; i < gcd.length; i+=2){			
 			for(int j = 1; j < gcd.length; j+=2){				
-				if(gcd(gcd[i],gcd[j]) == 1){	
+				if(gcd(gcd[i],gcd[j]) == 1){
+					
 					return true;
 				}
 			}
 		}
-		System.out.println("No solution - moduli are not coprime");
+		System.out.println(problem + ". No solution - moduli are not coprime");
 		return false;
 	}
 	
@@ -73,6 +79,7 @@ class ChineseRemThm{
 		int[] inverse = new int[mods.length];
 		int productMods = 1;
 		
+		
 		for(int i = 0; i < mods.length; i++){
 			productMods *= mods[i];   //multiplying all modulus
 		}
@@ -84,9 +91,10 @@ class ChineseRemThm{
 		}
 				
 		if (sum < 0)
-			System.out.println("x equivalent to " + (sum%productMods+productMods) + " mod " + productMods); //sum is neg add pMod
+			System.out.println(problem+". x equivalent to " + (sum%productMods+productMods) + " mod " + productMods); //sum is neg add pMod
 		else
-			System.out.println("x equivalent to " + sum%productMods + " mod " + productMods);
+			System.out.println(problem+". x equivalent to " + sum%productMods + " mod " + productMods);
+		
 	}
 
 	public static void main(String args[]){
