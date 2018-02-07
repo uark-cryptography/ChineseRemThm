@@ -1,16 +1,42 @@
+import java.math.BigInteger;
+
 class ChineseRemThm{
 	
 	void run(int a, int b, int c, int d){
+		int[] gcd = {a,b,c,d};
 		int[] cons = {a,c};
-		int[] mods = {b,d};		
-		solve(cons, mods);	
+		int[] mods = {b,d};	
+		
+		if(isCoprime(gcd))	
+			solve(cons, mods);	
 	}
 	
 	void run(int a, int b, int c, int d, int e, int f){
+		
+		int[] gcd = {a,b,c,d,e,f};
+		
 		int[] cons = {a,c,e};
-		int[] mods = {b,d,f};		
-		solve(cons, mods);		
+		int[] mods = {b,d,f};	
+
+		if(isCoprime(gcd))	
+			solve(cons, mods);	
 	}
+	
+	boolean isCoprime(int[] gcd){
+		
+		int a = 0;
+		int b = 0;
+		for(int i = 1; i < gcd.length; i+=2){			
+			for(int j = 1; j < gcd.length; j+=2){				
+				if(gcd(gcd[i],gcd[j]) == 1){	
+					return true;
+				}
+			}
+		}
+		System.out.println("No solution - moduli are not coprime");
+		return false;
+	}
+	
 	
 	//for multiplicative inverse
 	int multiInverse(int a, int b){
@@ -32,6 +58,14 @@ class ChineseRemThm{
 			output = swap;				
 		}			
 		return output;
+	}
+	
+
+	int gcd(int a, int b){
+		BigInteger b1 = BigInteger.valueOf(a);
+		BigInteger b2 = BigInteger.valueOf(b);
+		BigInteger gcd  = b1.gcd(b2);
+		return gcd.intValue();
 	}
 		
 	void solve(int[] cons, int[] mods){	
